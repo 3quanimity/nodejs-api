@@ -1,5 +1,6 @@
 import { createServer } from 'node:http'
 import { readUsers, createUser, deleteUser, checkUserLogin } from './api/usersApi.js'
+import { readProjects, createProject, deleteProject } from './api/projectsApi.js'
 
 createServer(async (req, res) => {
     res.setHeader('Content-Type', 'application/json')
@@ -30,7 +31,15 @@ createServer(async (req, res) => {
         break
 
         case "/projects":
-
+            if(method == "GET") {
+                response = await readProjects()
+            }
+            if(method == "POST") {
+                response = await createProject(req)
+            }
+            if(method == "DELETE") {
+                response = await deleteProject(url.searchParams.get('id'))
+            }
         break
 
         default: 
