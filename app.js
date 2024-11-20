@@ -1,5 +1,5 @@
 import { createServer } from 'node:http'
-import { readUsers } from './api/usersApi.js'
+import { readUsers, createUser, deleteUser, checkUserLogin } from './api/usersApi.js'
 
 createServer(async (req, res) => {
     res.setHeader('Content-Type', 'application/json')
@@ -16,9 +16,16 @@ createServer(async (req, res) => {
             if(method == "GET") {
                 response = await readUsers()
             }
+            if(method == "POST") {
+                response = await createUser(req)
+            }
+            if(method == "DELETE") {
+                response = await deleteUser(url.searchParams.get('id'))
+            }
         break
 
         case "/checkUser":
+            response = await checkUserLogin(url.searchParams.get('email'), url.searchParams.get('pass'))
 
         break
 
