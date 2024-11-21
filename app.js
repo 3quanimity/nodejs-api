@@ -4,9 +4,9 @@ import { readProjects, createProject, deleteProject } from './api/projectsApi.js
 
 createServer(async (req, res) => {
     res.setHeader('Content-Type', 'application/json')
-    res.setHeader('Allow-Control-Allow-Origin', '*')
-    res.setHeader('Allow-Control-Allow-Headers', 'Content-Type, Accept, Origin, Authorization')
-    res.setHeader('Allow-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Origin, Authorization')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
 
     const url = new URL(req.url, `http://${req.headers.host}`)
     const method = req.method
